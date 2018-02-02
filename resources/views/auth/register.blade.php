@@ -77,7 +77,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <div class="g-recaptcha" data-sitekey="6Ldh8kMUAAAAAJOmjoA9tvmYvGUkPtOCnlD-kY3r"></div>
+                                <div class="g-recaptcha" data-sitekey={{ env('GOOGLE_RECAPTCHA_KEY') }}></div>
                             </div>
                         </div>
 
