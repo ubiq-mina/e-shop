@@ -10,7 +10,7 @@ $factory->define(Product::class, function (Faker $faker) {
     $max = 100;
 
     return [
-        'name' => $faker->word,
+        'name' => ucfirst($faker->word),
         'category_id' => 1,
         'price' => mt_rand ($min*10, $max*10) / 10,
     ];

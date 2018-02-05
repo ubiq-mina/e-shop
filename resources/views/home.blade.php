@@ -16,9 +16,21 @@
 
                     You are logged in!
 
-                    @foreach ($products as $product)
-                        {{ $product }}
-                    @endforeach
+                    <div class="products">
+                        @foreach ($products as $product)
+                            <div class="product-item" data-id={{ $product->id }}>
+                                <p class="item-name">
+                                    {{ $product->name }}
+                                </p>
+                                <p class="item-price">
+                                    {{ $product->price }}
+                                </p>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="shopping-cart">
+                    </div>
                 </div>
             </div>
         </div>

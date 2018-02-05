@@ -1,0 +1,12 @@
+
+.products {
+    display: flex;
+}
+
+.product-item {
+    flex: auto;
+    margin: 10px;
+    padding: 10px;
+    background-color: gray;
+    color: white;
+}
