@@ -15,6 +15,10 @@
                     @endif
 
                     You are logged in!
+
+                    @foreach ($products as $product)
+                        {{ $product }}
+                    @endforeach
                 </div>
             </div>
         </div>

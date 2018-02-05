@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Buyable;
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 
 class Product extends Model implements Buyable
 {
