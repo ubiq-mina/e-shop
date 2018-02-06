@@ -18,14 +18,16 @@
 
                     <div class="products">
                         @foreach ($products as $product)
-                            <div class="product-item" data-id={{ $product->id }} data-row={{ $product->rowId }}>
-                                <p class="item-name">
-                                    {{ $product->name }}
-                                </p>
-                                <p class="item-price">
-                                    {{ $product->price }}
-                                </p>
-                            </div>
+                            <a href="products/{{ $product->id }}">
+                                <div class="product-item" data-id={{ $product->id }} data-row={{ $product->rowId }}>
+                                    <p class="item-name">
+                                        {{ $product->name }}
+                                    </p>
+                                    <p class="item-price">
+                                        {{ $product->price }}
+                                    </p>
+                                </div>
+                            </a>
                         @endforeach
                     </div>
 

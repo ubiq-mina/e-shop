@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        // TODO: Show products page
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // TODO: Admin-mode: Interface for adding products
     }
 
     /**
@@ -46,7 +46,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        // Show product page
+        return view('product', ['product' => $product]);
     }
 
     /**
@@ -57,7 +58,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        // TODO: Admin-mode: Interface for editing products
     }
 
     /**
