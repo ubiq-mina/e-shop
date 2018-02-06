@@ -30,6 +30,13 @@ class HomeController extends Controller
         echo Cart::content();
     }
 
+    public function remove()
+    {
+        $rowId = $_DELETE['rowId'];
+        Cart::remove($rowId);
+        echo Cart::contents();
+    }
+
     /**
      * Show the application dashboard.
      *

@@ -1,7 +1,6 @@
 
 $(document).ready(function() {
-
-    console.log()
+    var cart = []
 
     $('.product-item').on('click', function() {
         $.ajax({
@@ -25,8 +24,30 @@ $(document).ready(function() {
                 console.log(data);
             }
         });
-    })
+    });
     
+    $('.shopping-cart').on('click', '.item-remove', function() {
+        $.ajax({
+            'headers': {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            'url': '/home/delete',
+            'method': 'delete',
+            'beforeSend': console.log("Removing item..."),
+            'data': {
+                'rowId': $(this).data('row'),
+            },
+            'success': function(data) {
+                // console.log(data);
+                items = JSON.parse(data);
+                refreshCart(items);
+            },
+            'error': function(data) {
+                console.log(data);
+            }
+        });
+    });
+ 
 })
 
 function refreshCart(items) {
@@ -42,6 +63,7 @@ function refreshCart(items) {
         })
         .append(
             $('<button/>', {
+                text: 'x',
                 class: 'item-remove'
             })
         )

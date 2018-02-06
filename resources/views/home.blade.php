@@ -18,7 +18,7 @@
 
                     <div class="products">
                         @foreach ($products as $product)
-                            <div class="product-item" data-id={{ $product->id }}>
+                            <div class="product-item" data-id={{ $product->id }} data-row={{ $product->rowId }}>
                                 <p class="item-name">
                                     {{ $product->name }}
                                 </p>

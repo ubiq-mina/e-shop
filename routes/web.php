@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::post('/home', 'HomeController@store');
+Route::delete('/home/delete', 'HomeController@remove');
 
 Auth::routes();
 
