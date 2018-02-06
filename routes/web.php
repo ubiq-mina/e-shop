@@ -19,5 +19,6 @@ Route::post('/home', 'HomeController@store');
 Route::delete('/home/delete', 'HomeController@remove');
 
 Auth::routes();
+Route::resource('products', 'ProductController');
 
 Route::get('/home', 'HomeController@index')->name('home');
