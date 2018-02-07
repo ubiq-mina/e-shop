@@ -75,14 +75,21 @@ function refreshCart(items) {
         )
         .append(
             $('<td/>', {
-                text: 'x' + value['qty'],
+                // text: 'x' + value['qty'],
                 class: 'item-quantity'
             })
+            .append(
+                // <input class="form-control" type="number" value="42" id="example-number-input">
+                $('<input/>', {
+                    type: 'number',
+                    class: 'form-control',
+                    min: '1',
+                    max: '99',
+                    value: value['qty']
+                })
+            )
         )
         .append(
-            // <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            //     <span aria-hidden="true">&times;</span>
-            // </button>
             $('<td/>', {
                 class: 'item-remove'
             })
