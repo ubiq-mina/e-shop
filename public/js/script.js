@@ -69,23 +69,28 @@ function refreshCart(items) {
         )
         .append(
             $('<td/>', {
-                text: '$' + value['price'],
+                text: '$' + value['price'] * value['qty'],
                 class: 'item-price'
+            })
+            .on('change', function() {
+                $(this).text('$' + value['price'] * value['qty'])
             })
         )
         .append(
             $('<td/>', {
-                // text: 'x' + value['qty'],
                 class: 'item-quantity'
             })
             .append(
-                // <input class="form-control" type="number" value="42" id="example-number-input">
                 $('<input/>', {
                     type: 'number',
                     class: 'form-control',
                     min: '1',
                     max: '99',
                     value: value['qty']
+                })
+                .on('change', function() {
+                    value['qty'] = $(this).val();
+                    $(this).parent().siblings('.item-price').change();
                 })
             )
         )

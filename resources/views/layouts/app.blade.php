@@ -108,6 +108,16 @@
                     <tbody id="cart-contents">
                     </tbody>
                 </table>
+                <div id="cart-computations">
+                    Subtotal
+                    <h3 id="cart-subtotal">
+                        $0.00
+                    </h3>
+                    Total
+                    <h3 class="mt-0" id="cart-total">
+                        $0.00
+                    </h3>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Checkout</button>

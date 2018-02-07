@@ -24,3 +24,7 @@
 button:focus {
     outline: 0;
 }
+
+#cart-computations {
+    text-align: right;
+}
