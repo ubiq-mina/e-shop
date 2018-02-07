@@ -52,7 +52,7 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="cart-icon">
+                            <li class="cart-icon" data-toggle="modal" data-target="#cart-view">
                                 <a href="#">
                                     <img src="https://www.inmotionhosting.com/support/images/stories/icons/ecommerce/empty-cart-dark.png" height="28px" width="28px">
                                 </a>
@@ -84,6 +84,38 @@
         </nav>
 
         @yield('content')
+    </div>
+    
+    <div id="cart-view" class="modal fade">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cart contents</h3>
+                {{--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>  --}}
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-inverse">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-contents">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Checkout</button>
+                <button type="button" class="btn btn-danger">Clear</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

@@ -10,3 +10,17 @@
     background-color: gray;
     color: white;
 }
+
+.dropdown .dropdown-item { 
+    width: 400px!important; 
+}
+
+.item-remove button {
+    font-size: 2.5em;
+    width: 100%;
+    margin: auto;
+}
+
+button:focus {
+    outline: 0;
+}

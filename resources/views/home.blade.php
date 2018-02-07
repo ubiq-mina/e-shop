@@ -18,7 +18,7 @@
 
                     <div class="products">
                         @foreach ($products as $product)
-                            <a href="products/{{ $product->id }}">
+                            <a href="#">
                                 <div class="product-item" data-id={{ $product->id }} data-row={{ $product->rowId }}>
                                     <p class="item-name">
                                         {{ $product->name }}
@@ -31,8 +31,8 @@
                         @endforeach
                     </div>
 
-                    <div class="shopping-cart">
-                    </div>
+                    {{--  <div class="shopping-cart">
+                    </div>  --}}
                 </div>
             </div>
         </div>
