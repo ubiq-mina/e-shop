@@ -17,8 +17,8 @@ $(document).ready(function() {
             },
             'success': function(data) {
                 console.log("Success!");
-                items = JSON.parse(data);
-                refreshCart(items);
+                cart = JSON.parse(data);
+                refreshCart(cart);
             },
             'error': function(data) {
                 console.log(data);
@@ -39,24 +39,40 @@ $(document).ready(function() {
             },
             'success': function(data) {
                 console.log("Success!");
-                items = JSON.parse(data);
-                refreshCart(items);
+                cart = JSON.parse(data);
+                refreshCart(cart);
             },
             'error': function(data) {
                 console.log(data);
             }
         });
     });
+
+    $('#cart-subtotal').on('change', function() {
+        var subtotal = 0;
+        console.log(cart);
+        $.each(cart, function(key, value) {
+            console.log('Checking...');
+            subtotal += value['price'] * value['qty'];
+        });
+        $(this).text('$' + (subtotal).toFixed(2));
+        // $('#cart-total').change(subtotal);
+        $('#cart-total').trigger('change', [{subtotal : subtotal}]);
+    });
+
+    $('#cart-total').on('change', function(event, data) {
+        $(this).text('$' + data.subtotal.toFixed(2));
+    })
  
 })
 
-function refreshCart(items) {
-    if (items.length == 0) {
+function refreshCart(cart) {
+    if (cart.length == 0) {
         return;
     }
 
     $('#cart-contents').empty();
-    $.each(items, function(key, value) {
+    $.each(cart, function(key, value) {
         console.log('Adding item...');
         $('<tr/>', {
             class: 'cart-item',
@@ -84,13 +100,18 @@ function refreshCart(items) {
                     type: 'number',
                     class: 'form-control',
                     min: '1',
-                    max: '99',
-                    value: value['qty']
+                    max: '99'
                 })
                 .on('change', function() {
-                    value['qty'] = $(this).val();
+                    if ($(this).val() != "") {
+                        value['qty'] = $(this).val();
+                    }
+                    else {
+                        $(this).val(1);
+                    }
                     $(this).parent().siblings('.item-price').change();
-                })
+                    $('#cart-subtotal').change();
+                }).change()
             )
         )
         .append(
