@@ -52,6 +52,12 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li class="cart-icon">
+                                <a href="#">
+                                    <img src="https://www.inmotionhosting.com/support/images/stories/icons/ecommerce/empty-cart-dark.png" height="28px" width="28px">
+                                </a>
+                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->first_name }} <span class="caret"></span>
