@@ -69,12 +69,11 @@ function refreshCart(items) {
         )
         .append(
             $('<td/>', {
-                text: '$' + value['price'] * value['qty'],
                 class: 'item-price'
             })
             .on('change', function() {
-                $(this).text('$' + value['price'] * value['qty'])
-            })
+                $(this).text('$' + (value['price'] * value['qty']).toFixed(2))
+            }).change()
         )
         .append(
             $('<td/>', {
