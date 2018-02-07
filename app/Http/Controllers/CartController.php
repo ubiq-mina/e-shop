@@ -20,7 +20,13 @@ class CartController extends Controller
                     return addItem($item);
                 }
                 break;
-            case 2: // Remove cart item
+            case 2: // Edit cart item
+                $item = $_POST['item'];
+                if ($item) {
+                    return editItem($item);
+                }
+                break;
+            case 4: // Remove cart item
                 $id = $_POST['id'];
                 if ($id) {
                     return removeItem($id);
@@ -29,7 +35,7 @@ class CartController extends Controller
         }
     }
 
-    public function addItem()
+    public function addItem($item)
     {
         Cart::add([
             'id' => $_POST['id'],
@@ -37,15 +43,23 @@ class CartController extends Controller
             'qty' => 1,
             'price' => $_POST['price']
         ]);
+        return getItems();
     }
 
-    public function removeItem()
+    public function editItem($item)
     {
+        Cart::update($item->rowId, $item);
+        return getItems();
+    }
 
+    public function removeItem($item)
+    {
+        Cart::remove($item->rowId);
+        return getItems();
     }
 
     public function getItems()
     {
-
+        return Cart::content();
     }
 }

@@ -27,25 +27,27 @@ $(document).ready(function() {
     });
     
     $('.shopping-cart').on('click', '.item-remove', function() {
-        $.ajax({
-            'headers': {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            'url': '/home/delete',
-            'method': 'delete',
-            'beforeSend': console.log("Removing item..."),
-            'data': {
-                'rowId': $(this).data('row'),
-            },
-            'success': function(data) {
-                console.log("Success!");
-                cart = JSON.parse(data);
-                refreshCart(cart);
-            },
-            'error': function(data) {
-                console.log(data);
-            }
-        });
+        if (cart.length <= 0) {
+            $.ajax({
+                'headers': {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                'url': '/home/delete',
+                'method': 'delete',
+                'beforeSend': console.log("Removing item..."),
+                'data': {
+                    'rowId': $(this).data('row'),
+                },
+                'success': function(data) {
+                    console.log("Success!");
+                    cart = JSON.parse(data);
+                    refreshCart(cart);
+                },
+                'error': function(data) {
+                    console.log(data);
+                }
+            });
+        }
     });
 
     $('#cart-subtotal').on('change', function() {
