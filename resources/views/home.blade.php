@@ -18,7 +18,7 @@
 
                     <div class="products">
                         @foreach ($products as $product)
-                            <a href="#">
+                            {{--  <a href="#">
                                 <div class="product-item" data-id={{ $product->id }} data-row={{ $product->rowId }}>
                                     <p class="item-name">
                                         {{ $product->name }}
@@ -27,7 +27,8 @@
                                         {{ $product->price }}
                                     </p>
                                 </div>
-                            </a>
+                            </a>  --}}
+                            <product-select-component :product="product"></product-select-component>
                         @endforeach
                     </div>
 
