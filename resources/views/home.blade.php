@@ -28,7 +28,7 @@
                                     </p>
                                 </div>
                             </a>  --}}
-                            <product-select-component :product='{{ $product }}'></product-select-component>
+                            <product-item :product='{{ $product }}'></product-item>
                         @endforeach
                     </div>
 

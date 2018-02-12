@@ -83,17 +83,17 @@
             </div>
         </nav>
 
+        <div id="cart-view" class="modal fade">
+            <shopping-cart></shopping-cart>
+        </div>
         @yield('content')
     </div>
     
-    <div id="cart-view" class="modal fade">
+    {{--  <div id="cart-view" class="modal fade">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Cart contents</h3>
-                {{--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>  --}}
             </div>
             <div class="modal-body">
                 <table class="table table-bordered table-inverse">
@@ -126,10 +126,11 @@
             </div>
             </div>
         </div>
-    </div>
+    </div>  --}}
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
