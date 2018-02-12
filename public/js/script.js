@@ -1,30 +1,31 @@
 
 $(document).ready(function() {
     var cart = []
+    var bus = new Vue()
 
-    $('.product-item').on('click', function() {
-        $.ajax({
-            'headers': {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            'url': '/home',
-            'method': 'post',
-            'beforeSend': console.log("Sending..."),
-            'data': {
-                'id': $(this).data('id'),
-                'name': $(this).find('.item-name').text(),
-                'price': parseFloat($(this).find('.item-price').text())
-            },
-            'success': function(data) {
-                console.log("Success!");
-                cart = JSON.parse(data);
-                refreshCart(cart);
-            },
-            'error': function(data) {
-                console.log(data);
-            }
-        });
-    });
+    // $('.product-item').on('click', function() {
+    //     $.ajax({
+    //         'headers': {
+    //           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         'url': '/home',
+    //         'method': 'post',
+    //         'beforeSend': console.log("Sending..."),
+    //         'data': {
+    //             'id': $(this).data('id'),
+    //             'name': $(this).find('.item-name').text(),
+    //             'price': parseFloat($(this).find('.item-price').text())
+    //         },
+    //         'success': function(data) {
+    //             console.log("Success!");
+    //             cart = JSON.parse(data);
+    //             refreshCart(cart);
+    //         },
+    //         'error': function(data) {
+    //             console.log(data);
+    //         }
+    //     });
+    // });
     
     $('.shopping-cart').on('click', '.item-remove', function() {
         if (cart.length <= 0) {

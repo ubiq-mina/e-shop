@@ -1090,6 +1090,10 @@ __webpack_require__(12);
 
 window.Vue = __webpack_require__(36);
 
+window.axios = __webpack_require__(17);
+// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.common['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].getAttribute('content');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -43201,16 +43205,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'ProductItem',
-    data: function data() {
-        return {};
+    props: {
+        product: Object
     },
+    methods: {
+        addToCart: function addToCart() {
+            var params = new URLSearchParams();
+            params.append('id', this.product.id);
+            params.append('name', this.product.name);
+            params.append('price', this.product.price);
 
-    props: ["product"]
+            axios.post('/home', params).then(function (response) {
+                // console.log(response);
+                console.log('ProductItem: Item added!');
+                // this.$emit('itemAdded');
+                bus.$emit('itemAdded');
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -43221,24 +43238,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { attrs: { href: "#" } }, [
-    _c(
-      "div",
-      {
-        staticClass: "product-item",
-        attrs: { "data-id": _vm.product.id, "data-row": _vm.product.rowId }
-      },
-      [
-        _c("p", { staticClass: "item-name" }, [
-          _vm._v("\n            " + _vm._s(_vm.product.name) + "\n        ")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "item-price" }, [
-          _vm._v("\n            " + _vm._s(_vm.product.price) + "\n        ")
-        ])
-      ]
-    )
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "product-item",
+      attrs: { "data-id": _vm.product.id, "data-row": _vm.product.rowId }
+    },
+    [
+      _c("p", { staticClass: "item-name" }, [
+        _vm._v("\n        " + _vm._s(_vm.product.name) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "item-price" }, [
+        _vm._v("\n        " + _vm._s(_vm.product.price) + "\n    ")
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -43352,12 +43367,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'ShoppingCart',
     data: function data() {
-        return {
-            products: props.cart - items
-        };
+        return {};
     },
 
-    props: ['cart-items']
+    methods: {},
+    created: function created() {
+        bus.$on('itemAdded', function () {
+            console.log('ShoppingCart: はい〜');
+            // TODO: Get updated cart data from server.
+        });
+    }
 });
 
 /***/ }),
@@ -43368,95 +43387,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "modal-dialog", attrs: { role: "document" } },
-    [
-      _c("div", { staticClass: "modal-content" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "modal-body" },
-          [
-            _c("table", { staticClass: "table table-bordered table-inverse" }, [
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                { attrs: { id: "cart-contents" } },
-                _vm._l(_vm.products, function(product) {
-                  return _c("cart-item", {
-                    key: product.id,
-                    attrs: { product: product }
-                  })
-                })
-              )
-            ]),
-            _vm._v(" "),
-            _c("cart-computations", {
-              attrs: { "cart-subtotal": _vm.cart - _vm.subtotal }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _vm._m(2)
-      ])
-    ]
-  )
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("h3", { staticClass: "modal-title" }, [_vm._v("Cart contents")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Price")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Quantity")]),
-        _vm._v(" "),
-        _c("th")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Checkout")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-danger", attrs: { type: "button" } },
-        [_vm._v("Clear")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Close")]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "modal-dialog", attrs: { role: "document" } },
+      [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h3", { staticClass: "modal-title" }, [_vm._v("Cart contents")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("table", { staticClass: "table table-bordered table-inverse" }, [
+              _c("thead", [
+                _c("tr", [
+                  _c("th", [_vm._v("Name")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Price")]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("Quantity")]),
+                  _vm._v(" "),
+                  _c("th")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", { attrs: { id: "cart-contents" } })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "button" } },
+              [_vm._v("Checkout")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-danger", attrs: { type: "button" } },
+              [_vm._v("Clear")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Close")]
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

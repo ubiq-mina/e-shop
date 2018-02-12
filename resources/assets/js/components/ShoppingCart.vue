@@ -15,11 +15,11 @@
                         </tr>
                     </thead>
                     <tbody id="cart-contents">
-                        <cart-item 
+                        <!-- <cart-item 
                             v-for="product in products"
                             v-bind:product="product" 
                             v-bind:key="product.id">
-                        </cart-item>
+                        </cart-item> -->
                     </tbody>
                 </table>
                 <!-- <div id="cart-computations">
@@ -32,7 +32,7 @@
                         $0.00
                     </h3>
                 </div> -->
-                <cart-computations v-bind:cart-subtotal="cart-subtotal"></cart-computations>
+                <!-- <cart-computations v-bind:cart-subtotal="cart-subtotal"></cart-computations> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Checkout</button>
@@ -48,11 +48,15 @@
         name: 'ShoppingCart',
         data() {
             return {
-                products: props.cart-items
             }
         },
-        props: [
-            'cart-items'
-        ],
+        methods: {
+        },
+        created() {
+            bus.$on('itemAdded', function () {
+                console.log('ShoppingCart: はい〜');
+                // TODO: Get updated cart data from server.
+            })
+        }
     }
 </script>
