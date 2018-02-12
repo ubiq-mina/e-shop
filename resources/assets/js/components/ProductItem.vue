@@ -19,6 +19,8 @@
 
             }
         },
-        props: ["product"]
+        props: {
+            product: Object
+        }
     }
 </script>
