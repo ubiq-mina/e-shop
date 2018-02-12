@@ -13,6 +13,7 @@
 
 <script>
     export default {
+        name: 'product-select-component',
         data () {
             return {
 
