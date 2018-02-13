@@ -34,6 +34,7 @@ Vue.mixin({
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('product-item', require('./components/ProductItem.vue'));
 Vue.component('shopping-cart', require('./components/ShoppingCart.vue'));
+Vue.component('cart-item', require('./components/CartItem.vue'));
 
 
 const app = new Vue({

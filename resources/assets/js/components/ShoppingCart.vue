@@ -15,11 +15,11 @@
                         </tr>
                     </thead>
                     <tbody id="cart-contents">
-                        <!-- <cart-item 
+                        <cart-item 
                             v-for="product in products"
-                            v-bind:product="product" 
-                            v-bind:key="product.id">
-                        </cart-item> -->
+                            :product="product" 
+                            :key="product.id">
+                        </cart-item>
                     </tbody>
                 </table>
                 <!-- <div id="cart-computations">
