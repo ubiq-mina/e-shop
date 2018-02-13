@@ -22,16 +22,16 @@
                         </cart-item>
                     </tbody>
                 </table>
-                <!-- <div id="cart-computations">
+                <div id="cart-computations">
                     Subtotal
                     <h3 id="cart-subtotal">
-                        $0.00
+                        $ {{ cartSubtotal }}
                     </h3>
                     Total
                     <h3 class="mt-0" id="cart-total">
-                        $0.00
+                        $ {{ cartTotal }}
                     </h3>
-                </div> -->
+                </div>
                 <!-- <cart-computations v-bind:cart-subtotal="cart-subtotal"></cart-computations> -->
             </div>
             <div class="modal-footer">
@@ -54,9 +54,25 @@
                 products: []
             }
         },
+        computed: {
+            cartSubtotal() {
+                var subTotal = 0.0;
+                for (var product in this.products) {
+                    if (this.products.hasOwnProperty(product)) {
+                        console.log(this.products[product].price);
+                        subTotal += parseFloat(this.products[product].price);
+                    }
+                }
+                return subTotal;
+            },
+            cartTotal() {
+                var total = this.subTotal;
+                return total;
+            }
+        },
         methods: {
-            updateCart() { // Temporary hack
-                axios.post('/home', null)
+            updateCart() {
+                axios.get('/cart',)
                     .then(response => {
                         if (response.status == 200) {
                             // console.log('ProductItem: Item added!');

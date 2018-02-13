@@ -43398,12 +43398,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    computed: {
+        cartSubtotal: function cartSubtotal() {
+            var subTotal = 0.0;
+            for (var product in this.products) {
+                if (this.products.hasOwnProperty(product)) {
+                    console.log(this.products[product].price);
+                    subTotal += parseFloat(this.products[product].price);
+                }
+            }
+            return subTotal;
+        },
+        cartTotal: function cartTotal() {
+            var total = this.subTotal;
+            return total;
+        }
+    },
     methods: {
         updateCart: function updateCart() {
             var _this = this;
 
-            // Temporary hack
-            axios.post('/home', null).then(function (response) {
+            axios.get('/cart').then(function (response) {
                 if (response.status == 200) {
                     // console.log('ProductItem: Item added!');
                     // this.bus.$emit('itemAdded');
@@ -43457,6 +43472,25 @@ var render = function() {
                 })
               })
             )
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "cart-computations" } }, [
+            _vm._v("\n                Subtotal\n                "),
+            _c("h3", { attrs: { id: "cart-subtotal" } }, [
+              _vm._v(
+                "\n                    $ " +
+                  _vm._s(_vm.cartSubtotal) +
+                  "\n                "
+              )
+            ]),
+            _vm._v("\n                Total\n                "),
+            _c("h3", { staticClass: "mt-0", attrs: { id: "cart-total" } }, [
+              _vm._v(
+                "\n                    $ " +
+                  _vm._s(_vm.cartTotal) +
+                  "\n                "
+              )
+            ])
           ])
         ]),
         _vm._v(" "),

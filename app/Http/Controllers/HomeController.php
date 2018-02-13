@@ -19,6 +19,11 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function cart() 
+    {
+        echo Cart::content();
+    }
+
     public function store()
     {
         if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['price'])) {
