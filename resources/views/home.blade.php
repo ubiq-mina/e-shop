@@ -28,7 +28,7 @@
                                     </p>
                                 </div>
                             </a>  --}}
-                            <product-item :product='{{ $product }}' :bus="bus"></product-item>
+                            <product-item :product='{{ $product }}'></product-item>
                         @endforeach
                     </div>
 

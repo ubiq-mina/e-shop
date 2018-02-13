@@ -84,7 +84,7 @@
         </nav>
 
         <div id="cart-view" class="modal fade">
-            <shopping-cart :bus="bus"></shopping-cart>
+            <shopping-cart></shopping-cart>
         </div>
         @yield('content')
     </div>

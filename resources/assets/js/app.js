@@ -19,16 +19,29 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = document.getElementsByName('csrf
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+var bus = new Vue();
+
+Vue.mixin({
+    data() {
+        return {
+            get bus() {
+                return bus;
+            }
+        }
+    }
+})
+
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('product-item', require('./components/ProductItem.vue'));
 Vue.component('shopping-cart', require('./components/ShoppingCart.vue'));
+
 
 const app = new Vue({
     el: '#app',
     data() {
         return {
             cart: [],
-            bus: new Vue()
+            // bus: new Vue()
         }
     }
 });

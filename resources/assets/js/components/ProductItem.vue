@@ -14,7 +14,7 @@
         name: 'ProductItem',
         props: {
             product: Object,
-            bus: Object
+            // bus: Object
         },
         methods: {
             addToCart: function (event) {

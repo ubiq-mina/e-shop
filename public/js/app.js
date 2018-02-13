@@ -1106,6 +1106,18 @@ axios.defaults.headers.common['X-CSRF-TOKEN'] = document.getElementsByName('csrf
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+var bus = new Vue();
+
+Vue.mixin({
+    data: function data() {
+        return {
+            get bus() {
+                return bus;
+            }
+        };
+    }
+});
+
 Vue.component('example-component', __webpack_require__(39));
 Vue.component('product-item', __webpack_require__(42));
 Vue.component('shopping-cart', __webpack_require__(45));
@@ -1114,8 +1126,8 @@ var app = new Vue({
     el: '#app',
     data: function data() {
         return {
-            cart: [],
-            bus: new Vue()
+            cart: []
+            // bus: new Vue()
         };
     }
 });
@@ -43215,8 +43227,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'ProductItem',
     props: {
-        product: Object,
-        bus: Object
+        product: Object
+        // bus: Object
     },
     methods: {
         addToCart: function addToCart(event) {
@@ -43376,14 +43388,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'ShoppingCart',
-    props: {
-        bus: Object
-    },
+    // props: {
+    //     bus: Object
+    // },
     data: function data() {
-        return {};
+        return {
+            products: []
+        };
     },
 
-    methods: {},
+    methods: {
+        updateCart: function updateCart() {}
+    },
     created: function created() {
         this.bus.$on('itemAdded', function () {
             console.log('ShoppingCart: はい〜');
