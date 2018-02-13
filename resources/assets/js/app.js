@@ -24,5 +24,11 @@ Vue.component('product-item', require('./components/ProductItem.vue'));
 Vue.component('shopping-cart', require('./components/ShoppingCart.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data() {
+        return {
+            cart: [],
+            bus: new Vue()
+        }
+    }
 });

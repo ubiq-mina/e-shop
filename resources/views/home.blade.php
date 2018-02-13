@@ -28,7 +28,7 @@
                                     </p>
                                 </div>
                             </a>  --}}
-                            <product-item :product='{{ $product }}' @click="addToCart"></product-item>
+                            <product-item :product='{{ $product }}' :bus="bus"></product-item>
                         @endforeach
                     </div>
 

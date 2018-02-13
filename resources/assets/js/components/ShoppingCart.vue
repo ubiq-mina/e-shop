@@ -46,6 +46,9 @@
 <script>
     export default {
         name: 'ShoppingCart',
+        props: {
+            bus: Object
+        },
         data() {
             return {
             }
@@ -53,7 +56,7 @@
         methods: {
         },
         created() {
-            bus.$on('itemAdded', function () {
+            this.bus.$on('itemAdded', function () {
                 console.log('ShoppingCart: はい〜');
                 // TODO: Get updated cart data from server.
             })

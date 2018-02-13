@@ -1,7 +1,5 @@
 
 $(document).ready(function() {
-    var cart = []
-    var bus = new Vue()
 
     // $('.product-item').on('click', function() {
     //     $.ajax({
