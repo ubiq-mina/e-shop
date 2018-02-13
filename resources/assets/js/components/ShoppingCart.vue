@@ -55,15 +55,28 @@
             }
         },
         methods: {
-            updateCart() {
-
+            updateCart() { // Temporary hack
+                axios.post('/home', null)
+                    .then(response => {
+                        if (response.status == 200) {
+                            // console.log('ProductItem: Item added!');
+                            // this.bus.$emit('itemAdded');
+                            console.log(response);
+                            this.products = response.data;
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
         created() {
-            this.bus.$on('itemAdded', function () {
+            this.updateCart();
+
+            this.bus.$on('itemAdded', () => {
                 console.log('ShoppingCart: はい〜');
                 // TODO: Get updated cart data from server.
-
+                this.updateCart();
             })
         }
     }

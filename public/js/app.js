@@ -43398,12 +43398,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        updateCart: function updateCart() {}
+        updateCart: function updateCart() {
+            var _this = this;
+
+            // Temporary hack
+            axios.post('/home', null).then(function (response) {
+                if (response.status == 200) {
+                    // console.log('ProductItem: Item added!');
+                    // this.bus.$emit('itemAdded');
+                    console.log(response);
+                    _this.products = response.data;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
     },
     created: function created() {
+        var _this2 = this;
+
+        this.updateCart();
+
         this.bus.$on('itemAdded', function () {
             console.log('ShoppingCart: はい〜');
             // TODO: Get updated cart data from server.
+            _this2.updateCart();
         });
     }
 });

@@ -21,12 +21,14 @@ class HomeController extends Controller
 
     public function store()
     {
-        Cart::add([
-            'id' => $_POST['id'],
-            'name' => $_POST['name'],
-            'qty' => 1,
-            'price' => $_POST['price']
-        ]);
+        if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['price'])) {
+            Cart::add([
+                'id' => $_POST['id'],
+                'name' => $_POST['name'],
+                'qty' => 1,
+                'price' => $_POST['price']
+            ]);
+        }
         echo Cart::content();
     }
 
